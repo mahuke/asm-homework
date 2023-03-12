@@ -1,1 +1,29 @@
 
+int Sum(int* a, int n) {
+    int res = 0; // пока я разберусь с гитом пройдет вечность. Битый час не могу нормально пушнуть. АААААААААААААААА
+    _asm {
+    mov esi, a
+    mov eax, n
+    mov ebx, 0
+    for1: sub eax, 1
+    cmp [esi + 4 * eax], 10
+    jg note
+    add ebx, [esi + 4 * eax]
+    note:
+    cmp eax, 0
+    jg for1
+    mov res, ebx
+    }
+    return res;
+}
+#include <iostream>
+using namespace std;
+int main()
+{
+    int* a = new int[15];
+    for (int i = 0; i < 15; i++) {
+        a[i] = i;
+    }
+    cout << Sum(a, 15);
+}
+
